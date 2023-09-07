@@ -15,8 +15,12 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: Change working directory to 'dummy'
-        run: cd ${{ github.workspace }}/dummy
       - name: Dump 'dummy.txt'
-        run: cat dummy.txt
+        run: |
+          echo "--- Dump 1 ---"
+          cat dummy.txt
+          echo "Hello Universe" >> dummy.txt
+          echo "--- Dump 2 ---"
+          cat dummy.txt
+        working-directory: ${{ github.workspace }}/dummy
       - run: echo "🍏 This job's status is ${{ job.status }}."
